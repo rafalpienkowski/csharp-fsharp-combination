@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperStore", "src\SuperStor
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SuperStore.UnitTests", "src\SuperStore.UnitTests\SuperStore.UnitTests.fsproj", "{13BFBF08-425E-4775-89D7-3355CA6ECAC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperStore.Api", "src\SuperStore.Api\SuperStore.Api.csproj", "{C9ECC384-34D5-49CA-8B3D-EEC70E17EDE1}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SuperStore.Api.Tests", "src\SuperStore.Api.Tests\SuperStore.Api.Tests.fsproj", "{638E272D-4C6B-4DC2-865D-6821F2DEC0C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{13BFBF08-425E-4775-89D7-3355CA6ECAC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13BFBF08-425E-4775-89D7-3355CA6ECAC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13BFBF08-425E-4775-89D7-3355CA6ECAC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9ECC384-34D5-49CA-8B3D-EEC70E17EDE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9ECC384-34D5-49CA-8B3D-EEC70E17EDE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9ECC384-34D5-49CA-8B3D-EEC70E17EDE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9ECC384-34D5-49CA-8B3D-EEC70E17EDE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{638E272D-4C6B-4DC2-865D-6821F2DEC0C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{638E272D-4C6B-4DC2-865D-6821F2DEC0C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{638E272D-4C6B-4DC2-865D-6821F2DEC0C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{638E272D-4C6B-4DC2-865D-6821F2DEC0C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

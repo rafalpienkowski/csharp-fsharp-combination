@@ -2,12 +2,12 @@ namespace SuperStore;
 
 public class Bank
 {
-    private readonly Dictionary<RatePair, int> _rates = new();
+    private readonly Dictionary<RatePair, decimal> _rates = new();
     private decimal _commission = 0;
 
     public Money Reduce(IExpression source, string to) => source.Reduce(this, to);
 
-    public void AddRate(string from, string to, int value)
+    public void AddRate(string from, string to, decimal value)
     {
         _rates.Add(new RatePair(from, to), value);
     }

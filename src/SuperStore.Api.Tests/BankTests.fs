@@ -1,5 +1,6 @@
 module ``Bank NPB should``
 
+open System.Net
 open System.Text.Json
 open Xunit
 open System.Net.Http
@@ -19,16 +20,21 @@ let takeResult (httpResponse: HttpResponseMessage) =
 
 let dollars amount = { currency = "USD"; amount = amount }
 let francs amount = { currency = "CHF"; amount = amount }
+let zloty amount = { currency = "PLN"; amount = amount }
 
 let twoDollars = dollars 2m
 let threeDollars = dollars 3m
 let fiveDollars = dollars 5m
 let sevenDollars = dollars 7m
 let tenFrancs = francs 10m
+let tenZloty = zloty 10m
 
 let take addend augend =
     let request = { toCurrency = "USD"; augend = augend; addend = addend }
     createPostRequest "/banks/nbp/sum" request
+
+let takeStatusCode (httpResponseMessage: HttpResponseMessage)  =
+    httpResponseMessage.StatusCode
 
 [<Fact>]
 let ``calculate sum for money in the same currency`` () =
@@ -43,3 +49,10 @@ let ``calculate sum of 2 USD and 10 CHF in USD`` () =
     |> callServer
     |> takeResult
     |> should equal sevenDollars
+
+[<Fact>]
+let ``reject not supported currency`` () =
+    take tenZloty tenZloty
+    |> callServer
+    |> takeStatusCode
+    |> should equal HttpStatusCode.BadRequest

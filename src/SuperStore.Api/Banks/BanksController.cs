@@ -7,13 +7,13 @@ namespace SuperStore.Api.Banks;
 public class BanksController : ControllerBase
 {
     private readonly Bank _bank = new();
-    private readonly List<string> _supportedCurrencies = new() { "USD", "CHF" };
     private readonly ILogger<BanksController> _logger;
 
     public BanksController(ILogger<BanksController> logger)
     {
         _logger = logger;
         _bank.AddRate("CHF", "USD", 2);
+        _bank.AddRate("USD", "CHF", 0.5m);
     }
 
     [HttpPost(Name = "sum")]
@@ -21,24 +21,6 @@ public class BanksController : ControllerBase
     public IActionResult Sum([FromRoute] string bankName, [FromBody] ReduceRequest request)
     {
         _logger.LogInformation("Bank {BankName} called for sum", bankName);
-
-        if (request.Addend is null)
-        {
-            return BadRequest("Addend is required");
-        }
-
-        if (request.Augend is null)
-        {
-            return BadRequest("Augend is required");
-        }
-
-        if (!_supportedCurrencies.Contains(request.ToCurrency) ||
-            !_supportedCurrencies.Contains(request.Addend?.Currency ?? string.Empty) ||
-            !_supportedCurrencies.Contains(request.Augend?.Currency ?? string.Empty)
-           )
-        {
-            return BadRequest("Not supported currency");
-        }
 
         var augend = From(request.Augend!);
         var addend = From(request.Addend!);
@@ -48,7 +30,7 @@ public class BanksController : ControllerBase
 
         return Ok(ToDto(result));
     }
-
+    
     private static Money From(MoneyDto dto) =>
         dto.Currency switch
         {
